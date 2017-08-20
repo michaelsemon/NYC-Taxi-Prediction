@@ -42,3 +42,5 @@ pl3 <- ggplot(taxi.train,aes(x=pickup_month,y=trip_duration)) + geom_bar(stat='i
 print(pl3)
 
  
+pl4 <- ggplot(taxi.train,aes(x=factor(vendor_id),y=mean(trip_duration))) + geom_bar(stat='identity') + theme_classic() 
+print(pl4)
