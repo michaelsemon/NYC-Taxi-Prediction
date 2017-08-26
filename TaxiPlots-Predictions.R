@@ -44,3 +44,19 @@ print(pl3)
  
 pl4 <- ggplot(taxi.train,aes(x=factor(vendor_id),y=mean(trip_duration))) + geom_bar(stat='identity') + theme_classic() 
 print(pl4)
+
+
+library(caTools)
+
+
+# - Prediction Models - #
+
+#linear regression
+model.lr <- lm(trip_duration ~ ., data = taxi.train)
+predictions.lr <- predict(model.lr, taxi.test)
+results.lr <- cbind(predictions.lr,taxi.test$trip_duration)
+
+#neual net
+taxi.nn <- neuralnet(trip_duration ~ passenger_count+vendor_id+pickup_month+pickup_weekend+store_and_fwd_flag,data=taxi.train,linear.ouput=FALSE,hidden=c(5,3))
+
+
